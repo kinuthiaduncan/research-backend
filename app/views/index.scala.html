@@ -15,12 +15,17 @@
                           default-active="2"
                           class="el-menu-vertical-demo"
                           background-color="#303641">
+                              <router-link :to="{name: '/'}">
+                                  <el-menu-item index="1-1">Dashboard</el-menu-item>
+                              </router-link>
                               <el-submenu index="1">
                                   <template slot="title">
                                       <span class="iconify" data-icon="simple-line-icons:people" data-inline="false"></span>
                                       <span slot="title">Focus Groups</span>
                                   </template>
-                                  <router-link :to="{name: 'vpn'}"><el-menu-item index="1-1">VPN Usage</el-menu-item></router-link>
+                                  <router-link :to="{name: 'vpn'}">
+                                      <el-menu-item index="1-1">VPN Usage</el-menu-item>
+                                  </router-link>
                               </el-submenu>
                           </el-menu>
                       </div>
@@ -51,7 +56,7 @@
                   <div class="row align-items-center">
                       <div class="col-sm-6">
                           <div class="breadcrumbs-area clearfix">
-                              <h4 class="page-title pull-left">Dash</h4>
+                              <h4 class="page-title pull-left">{{active_page}}</h4>
                           </div>
                       </div>
                   </div>

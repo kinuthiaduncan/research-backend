@@ -17025,3 +17025,36 @@ img {
 
 .sbar_collapsed .sidebar-menu {
   left: -280px; }
+
+.el-menu-item {
+  color: #FFFFFF; }
+
+.router-link-exact-active {
+  color: #FFFFFF;
+  background-color: #262b34 !important; }
+
+.el-menu-item.is-active {
+  color: #FFFFFF; }
+
+a:hover {
+  text-decoration: none; }
+
+.dashboard-main {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important; }
+
+.single-report {
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  vertical-align: center; }
+
+.header-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #333;
+  text-transform: capitalize;
+  margin-bottom: 17px; }

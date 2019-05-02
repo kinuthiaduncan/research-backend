@@ -46,4 +46,8 @@ class FocusGroupRepository @Inject() (dbConfigProvider: DatabaseConfigProvider) 
   def list(): Future[Seq[FocusGroup]] = db.run {
     focusGroup.result
   }
+
+  def count(): Future[Int] = db.run {
+    focusGroup.length.result
+  }
 }

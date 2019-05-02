@@ -17376,16 +17376,50 @@ module.exports = Cancel;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
-//
+
+var _extends2 = __webpack_require__(57);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = __webpack_require__(204);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
     data: function data() {
-        return {};
+        return {
+            pageName: "Dashboard",
+            all_participants: "/focus_groups/all_participants",
+            participantCount: null
+        };
     },
-    methods: {}
-};
+    methods: (0, _extends3.default)({}, (0, _vuex.mapActions)(['listenToPageChange']), {
+        getAllParticipants: function getAllParticipants() {
+            var _this = this;
+
+            axios.get(this.all_participants).then(function (response) {
+                _this.participantCount = response.data.participantCount;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }),
+    mounted: function mounted() {
+        this.listenToPageChange(this.pageName);
+        this.getAllParticipants();
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 75 */
@@ -17402,6 +17436,10 @@ module.exports = __webpack_require__(194);
 "use strict";
 
 
+var _extends2 = __webpack_require__(57);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _vueRouter = __webpack_require__(197);
 
 var _vueRouter2 = _interopRequireDefault(_vueRouter);
@@ -17409,6 +17447,8 @@ var _vueRouter2 = _interopRequireDefault(_vueRouter);
 var _store = __webpack_require__(203);
 
 var _store2 = _interopRequireDefault(_store);
+
+var _vuex = __webpack_require__(204);
 
 var _Vpn = __webpack_require__(199);
 
@@ -17424,7 +17464,7 @@ __webpack_require__(77);
 
 Vue.use(_vueRouter2.default);
 
-var routes = [{ path: '/', component: _Dashboard2.default, name: 'dashboard', alias: '/dashboard' }, { path: '/vpn', component: _Vpn2.default, name: 'vpn' }];
+var routes = [{ path: '/', component: _Dashboard2.default, name: '/', alias: '/dashboard' }, { path: '/vpn', component: _Vpn2.default, name: 'vpn' }];
 
 var router = new _vueRouter2.default({ routes: routes });
 
@@ -17433,7 +17473,13 @@ var app = new Vue({
     store: _store2.default,
     data: function data() {
         return {};
-    }
+    },
+    computed: {
+        active_page: function active_page() {
+            return this.$store.getters.activePage;
+        }
+    },
+    methods: (0, _extends3.default)({}, (0, _vuex.mapActions)([]))
 }).$mount('#app');
 
 /***/ }),
@@ -82937,7 +82983,7 @@ exports = module.exports = __webpack_require__(190)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -83417,7 +83463,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "dashboard-main" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "single-report mb-xs-30" }, [
+          _c("h4", { staticClass: "header-title" }, [
+            _vm._v("All Focus Groups Participants")
+          ]),
+          _vm._v(" "),
+          _c("h2", [_vm._v(_vm._s(_vm.participantCount))])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -86125,16 +86183,31 @@ if (inBrowser && window.Vue) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
-//
-//
-//
-//
+
+var _extends2 = __webpack_require__(57);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _vuex = __webpack_require__(204);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    name: "Vpn"
-};
+    data: function data() {
+        return {
+            pageName: "VPN Usage Analysis"
+        };
+    },
+    methods: (0, _extends3.default)({}, (0, _vuex.mapActions)(['listenToPageChange'])),
+    mounted: function mounted() {
+        this.listenToPageChange(this.pageName);
+    }
+}; //
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 199 */
@@ -86232,7 +86305,7 @@ exports = module.exports = __webpack_require__(190)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -86288,18 +86361,20 @@ var _vuex2 = _interopRequireDefault(_vuex);
 
 var _actions = __webpack_require__(205);
 
-var _actions2 = _interopRequireDefault(_actions);
+var actions = _interopRequireWildcard(_actions);
 
 var _interfaces = __webpack_require__(206);
 
 var _interfaces2 = _interopRequireDefault(_interfaces);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vuex2.default);
 
 exports.default = new _vuex2.default.Store({
-   actions: _actions2.default,
+   actions: actions,
    modules: {
       interfaces: _interfaces2.default
    }
@@ -87342,6 +87417,31 @@ var listenToPageChange = exports.listenToPageChange = function listenToPageChang
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var state = {
+    active_page: ""
+};
+
+var mutations = {
+    'UPDATE_PAGE': function UPDATE_PAGE(state, active_page) {
+        state.active_page = active_page;
+    }
+};
+
+var getters = {
+    activePage: function activePage(state) {
+        return state.active_page;
+    }
+};
+
+exports.default = {
+    state: state,
+    mutations: mutations,
+    getters: getters
+};
 
 /***/ })
 /******/ ]);

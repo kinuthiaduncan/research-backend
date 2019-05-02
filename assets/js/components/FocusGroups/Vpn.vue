@@ -5,8 +5,21 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex';
     export default {
-        name: "Vpn"
+        data: function () {
+            return {
+                pageName: "VPN Usage Analysis"
+            }
+        },
+        methods: {
+            ...mapActions([
+                'listenToPageChange'
+            ])
+        },
+        mounted: function () {
+            this.listenToPageChange(this.pageName);
+        }
     }
 </script>
 
