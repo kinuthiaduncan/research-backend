@@ -17416,6 +17416,31 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -17427,16 +17452,6 @@ exports.default = {
     },
 
     methods: {
-        handleOpen: function handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        handleClose: function handleClose(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        handleSelect: function handleSelect(key, keyPath) {
-            console.log(key, keyPath);
-        },
-
         menuControl: function menuControl() {
             this.isCollapse = !this.isCollapse;
         }
@@ -82968,7 +82983,7 @@ exports = module.exports = __webpack_require__(190)(false);
 
 
 // module
-exports.push([module.i, "\n.el-menu-vertical-demo:not(.el-menu--collapse) {\n    width: 200px;\n    min-height: 90%;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -83448,128 +83463,139 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "row dashboard" },
-    [
-      _c(
-        "div",
-        { staticClass: "top-menu" },
-        [
-          _c(
-            "el-menu",
-            {
-              attrs: {
-                mode: "horizontal",
-                "background-color": "#545c64",
-                "text-color": "#fff"
-              }
-            },
-            [
-              _c(
-                "el-menu-item",
-                { attrs: { index: "2" }, on: { click: _vm.menuControl } },
-                [
-                  _c("span", {
-                    staticClass: "iconify",
-                    attrs: {
-                      "data-icon": "simple-line-icons:menu",
-                      "data-inline": "false"
-                    }
-                  })
-                ]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
+  return _c("div", { staticClass: "page-container" }, [
+    _c("div", { staticClass: "sidebar-menu" }, [
+      _vm._m(0),
       _vm._v(" "),
-      _c(
-        "el-menu",
-        {
-          staticClass: "el-menu-vertical-demo",
-          attrs: {
-            "default-active": "2",
-            collapse: _vm.isCollapse,
-            "background-color": "#303641"
+      _c("div", { staticClass: "main-menu" }, [
+        _c(
+          "div",
+          {
+            staticClass: "slimScrollDiv",
+            staticStyle: {
+              position: "relative",
+              overflow: "hidden",
+              width: "auto",
+              height: "517px"
+            }
           },
-          on: { open: _vm.handleOpen, close: _vm.handleClose }
-        },
-        [
-          _c(
-            "el-submenu",
-            { attrs: { index: "1" } },
-            [
-              _c("template", { slot: "title" }, [
+          [
+            _c(
+              "div",
+              {
+                staticClass: "menu-inner",
+                staticStyle: {
+                  overflow: "hidden",
+                  width: "auto",
+                  height: "517px"
+                }
+              },
+              [
+                _c(
+                  "el-menu",
+                  {
+                    staticClass: "el-menu-vertical-demo",
+                    attrs: {
+                      "default-active": "2",
+                      collapse: _vm.isCollapse,
+                      "background-color": "#303641"
+                    }
+                  },
+                  [
+                    _c(
+                      "el-submenu",
+                      { attrs: { index: "1" } },
+                      [
+                        _c("template", { slot: "title" }, [
+                          _c("span", {
+                            staticClass: "iconify",
+                            attrs: {
+                              "data-icon": "simple-line-icons:people",
+                              "data-inline": "false"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            { attrs: { slot: "title" }, slot: "title" },
+                            [_vm._v("Focus Groups")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("el-menu-item", { attrs: { index: "1-1" } }, [
+                          _vm._v("item one")
+                        ])
+                      ],
+                      2
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sidebar-header" }, [
+      _c("div", { staticClass: "logo" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "main-content", staticStyle: { "min-height": "274px" } },
+      [
+        _c("div", { staticClass: "header-area" }, [
+          _c("div", { staticClass: "row align-items-center" }, [
+            _c("div", { staticClass: "col-md-6 col-sm-8 clearfix" }, [
+              _c("div", { staticClass: "nav-btn pull-left" }, [
                 _c("span", {
                   staticClass: "iconify",
                   attrs: {
-                    "data-icon": "simple-line-icons:people",
+                    "data-icon": "simple-line-icons:menu",
                     "data-inline": "false"
                   }
-                }),
-                _vm._v(" "),
-                _c("span", { attrs: { slot: "title" }, slot: "title" }, [
-                  _vm._v("Focus Groups")
-                ])
+                })
               ]),
               _vm._v(" "),
-              _c(
-                "el-menu-item-group",
-                [
-                  _c("span", { attrs: { slot: "title" }, slot: "title" }, [
-                    _vm._v("Group One")
-                  ]),
-                  _vm._v(" "),
-                  _c("el-menu-item", { attrs: { index: "1-1" } }, [
-                    _vm._v("item one")
-                  ]),
-                  _vm._v(" "),
-                  _c("el-menu-item", { attrs: { index: "1-2" } }, [
-                    _vm._v("item two")
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-menu-item-group",
-                { attrs: { title: "Group Two" } },
-                [
-                  _c("el-menu-item", { attrs: { index: "1-3" } }, [
-                    _vm._v("item three")
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-submenu",
-                { attrs: { index: "1-4" } },
-                [
-                  _c("span", { attrs: { slot: "title" }, slot: "title" }, [
-                    _vm._v("item four")
-                  ]),
-                  _vm._v(" "),
-                  _c("el-menu-item", { attrs: { index: "1-4-1" } }, [
-                    _vm._v("item one")
-                  ])
-                ],
-                1
-              )
-            ],
-            2
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
+              _c("div", { staticClass: "search-box pull-left" })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6 col-sm-4 clearfix" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "page-title-area" }, [
+          _c("div", { staticClass: "row align-items-center" }, [
+            _c("div", { staticClass: "col-sm-6" }, [
+              _c("div", { staticClass: "breadcrumbs-area clearfix" }, [
+                _c("h4", { staticClass: "page-title pull-left" }, [
+                  _vm._v("Dashboard")
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "main-content-inner" })
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 if (false) {
