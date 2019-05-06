@@ -16,4 +16,10 @@ class DashboardController @Inject() (cc: MessagesControllerComponents) (repo: Fo
       Ok(Json.obj("status" ->"OK", "participantCount" -> count ))
     }
   })
+
+  def groupByAgeGroup() = Action.async(implicit request => {
+    repo.ageGroups().map { ageGroups =>
+      Ok(Json.obj("status" -> "OK", "ageGroups" -> ageGroups))
+    }
+  })
 }

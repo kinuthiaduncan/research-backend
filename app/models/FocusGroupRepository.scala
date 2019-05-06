@@ -50,4 +50,8 @@ class FocusGroupRepository @Inject() (dbConfigProvider: DatabaseConfigProvider) 
   def count(): Future[Int] = db.run {
     focusGroup.length.result
   }
+
+  def ageGroups(): Future[Seq[(String, Int)]] = db.run {
+    focusGroup.groupBy(p => p.age_group).map{case (age_group, group) => (age_group, group.map(_.id).length)}.result
+  }
 }

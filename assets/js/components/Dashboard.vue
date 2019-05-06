@@ -2,9 +2,18 @@
     <div class="dashboard-main">
         <div class="row">
             <div class="col-md-4">
-                <div class="single-report mb-xs-30">
+                <div class="single-report">
                     <h4 class="header-title">All Focus Groups Participants</h4>
                     <h2>{{participantCount}}</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-report">
+                    <h4 class="header-title">Age Groups Counts</h4>
+                    <div v-for="ageGroup in ageGroups">
+                        <h2>{{ageGroup.join(' = ')}}</h2>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -16,8 +25,10 @@
         data: function() {
             return {
                 pageName: "Dashboard",
-                all_participants: "/focus_groups/all_participants",
-                participantCount: null
+                all_participants: "/dashboard/all_participants",
+                participantCount: null,
+                age_group_url: "/dashboard/group_by_age",
+                ageGroups: []
             };
         },
         methods: {
@@ -30,11 +41,21 @@
                 }).catch(error => {
                     console.log(error);
                 })
+            },
+            getAgeGroups: function () {
+                axios.get(this.age_group_url).then(response => {
+                    console.log(response.data.ageGroups);
+                    this.ageGroups = response.data.ageGroups;
+
+                }).catch(error => {
+                    console.log(error);
+                })
             }
         },
         mounted: function () {
             this.listenToPageChange(this.pageName);
             this.getAllParticipants();
+            this.getAgeGroups();
         }
     }
 </script>

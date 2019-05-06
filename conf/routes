@@ -5,7 +5,8 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
-GET     /focus_groups/all_participants  controllers.DashboardController.allParticipants
+GET     /dashboard/all_participants  controllers.DashboardController.allParticipants
+GET     /dashboard/group_by_age     controllers.DashboardController.groupByAgeGroup
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
