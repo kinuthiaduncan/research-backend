@@ -2,6 +2,7 @@ package models
 
 import javax.inject.{Inject, Singleton}
 import play.api.db.slick.DatabaseConfigProvider
+import play.api.http.Writeable
 import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -54,4 +55,29 @@ class FocusGroupRepository @Inject() (dbConfigProvider: DatabaseConfigProvider) 
   def ageGroups(): Future[Seq[(String, Int)]] = db.run {
     focusGroup.groupBy(p => p.age_group).map{case (age_group, group) => (age_group, group.map(_.id).length)}.result
   }
+
+  def gender(): Future[Seq[(String, Int)]] = db.run {
+    focusGroup.groupBy(p => p.gender).map{case (gender, group) => (gender, group.map(_.id).length)}.result
+  }
+
+  def genderAgeGroups(): Future[Seq[((String, String), Int)]] = db.run {
+    focusGroup.groupBy(p => (p.gender, p.age_group)).map{case (gender, group) => (gender, group.map(_.id).length)}.result
+  }
+
+  def vpnByAgeGroups(condition: String): Future[Seq[(String, Int)]] = db.run {
+    focusGroup.filter(_.used_VPN === condition)
+      .groupBy(p => p.age_group).map{case (age_group, group) => (age_group, group.map(_.id).length)}.result
+  }
+
+  def smartDnsByAgeGroups(condition: String): Future[Seq[(String, Int)]] = db.run {
+    focusGroup.filter(_.used_smart_dns === condition)
+      .groupBy(p => p.age_group).map{case (age_group, group) => (age_group, group.map(_.id).length)}.result
+  }
+
+  def internetUsageByAgeGroup(): Future[Seq[(String, Option[Int], Option[Int], Option[Int], Option[Int], Option[Int], Option[Int])]] = db.run {
+    focusGroup.groupBy(p => p.age_group).map{case (age_group, group) => (age_group, group.map(_.shopping).avg,
+      group.map(_.educational_research).avg, group.map(_.entertainment).avg, group.map(_.social_media).avg,
+      group.map(_.news).avg, group.map(_.working).avg)}.result
+  }
+
 }

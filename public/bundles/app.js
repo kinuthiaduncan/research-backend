@@ -16772,7 +16772,8 @@ exports.default = {
             all_participants: "/dashboard/all_participants",
             participantCount: null,
             age_group_url: "/dashboard/group_by_age",
-            ageGroups: []
+            ageGroups: [],
+            gender_age_group_url: "/focus_groups/gender_age_group"
         };
     },
     methods: (0, _extends3.default)({}, (0, _vuex.mapActions)(['listenToPageChange']), {
@@ -16789,8 +16790,14 @@ exports.default = {
             var _this2 = this;
 
             axios.get(this.age_group_url).then(function (response) {
-                console.log(response.data.ageGroups);
                 _this2.ageGroups = response.data.ageGroups;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        genderAgeGroups: function genderAgeGroups() {
+            axios.get(this.gender_age_group_url).then(function (response) {
+                console.log(response.data);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -16800,6 +16807,7 @@ exports.default = {
         this.listenToPageChange(this.pageName);
         this.getAllParticipants();
         this.getAgeGroups();
+        this.genderAgeGroups();
     }
 }; //
 //
@@ -22426,7 +22434,7 @@ exports = module.exports = __webpack_require__(55)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -22443,7 +22451,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "dashboard-main" }, [
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row", staticStyle: { display: "flex" } }, [
       _c("div", { staticClass: "col-md-4" }, [
         _c("div", { staticClass: "single-report" }, [
           _c("h4", { staticClass: "header-title" }, [

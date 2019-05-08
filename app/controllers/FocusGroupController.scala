@@ -15,4 +15,17 @@ class FocusGroupController @Inject() (cc: MessagesControllerComponents) (repo: F
       Ok(Json.toJson(focusGroups))
     }
   })
+
+  def genderAgeGroups() = Action.async(implicit request => {
+    repo.genderAgeGroups().map{ data =>
+      Ok(Json.obj("status" ->"OK", "data" -> data ))
+    }
+  })
+
+  def internetUsageByAgeGroup() = Action.async(implicit request => {
+    repo.internetUsageByAgeGroup().map{ data =>
+      Ok(Json.obj("status" ->"OK", "data" -> data ))
+    }
+  })
+
 }

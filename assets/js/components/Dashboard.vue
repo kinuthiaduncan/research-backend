@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard-main">
-        <div class="row">
+        <div class="row" style="display:flex;">
             <div class="col-md-4">
                 <div class="single-report">
                     <h4 class="header-title">All Focus Groups Participants</h4>
@@ -28,7 +28,8 @@
                 all_participants: "/dashboard/all_participants",
                 participantCount: null,
                 age_group_url: "/dashboard/group_by_age",
-                ageGroups: []
+                ageGroups: [],
+                gender_age_group_url: "/focus_groups/gender_age_group"
             };
         },
         methods: {
@@ -44,9 +45,15 @@
             },
             getAgeGroups: function () {
                 axios.get(this.age_group_url).then(response => {
-                    console.log(response.data.ageGroups);
                     this.ageGroups = response.data.ageGroups;
 
+                }).catch(error => {
+                    console.log(error);
+                })
+            },
+            genderAgeGroups: function () {
+                axios.get(this.gender_age_group_url).then(response => {
+                    console.log(response.data);
                 }).catch(error => {
                     console.log(error);
                 })
@@ -56,6 +63,7 @@
             this.listenToPageChange(this.pageName);
             this.getAllParticipants();
             this.getAgeGroups();
+            this.genderAgeGroups();
         }
     }
 </script>
