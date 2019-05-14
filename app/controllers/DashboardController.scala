@@ -2,22 +2,23 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 import models.FocusGroupRepository
+import play.api.Configuration
 import play.api.libs.json.Json
 import play.api.mvc.{AbstractController, MessagesControllerComponents}
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class DashboardController @Inject() (cc: MessagesControllerComponents) (repo: FocusGroupRepository)
-                                    (implicit ec: ExecutionContext) extends AbstractController(cc) {
+class DashboardController @Inject() (scc: SecuredControllerComponents) (repo: FocusGroupRepository)
+                                    (implicit ec: ExecutionContext, conf:Configuration) extends SecuredController(scc) {
 
-  def allParticipants() = Action.async(implicit request => {
+  def allParticipants() = AuthenticatedAction.async(implicit request => {
     repo.count().map { count =>
-      Ok(Json.obj("status" ->"OK", "participantCount" -> count ))
+      Ok(Json.obj("status" -> "OK", "participantCount" -> count))
     }
   })
 
-  def groupByAgeGroup() = Action.async(implicit request => {
+  def groupByAgeGroup() = AuthenticatedAction.async(implicit request => {
     repo.ageGroups().map { ageGroups =>
       Ok(Json.obj("status" -> "OK", "ageGroups" -> ageGroups))
     }

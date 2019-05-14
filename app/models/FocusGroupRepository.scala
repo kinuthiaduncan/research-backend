@@ -2,7 +2,6 @@ package models
 
 import javax.inject.{Inject, Singleton}
 import play.api.db.slick.DatabaseConfigProvider
-import play.api.http.Writeable
 import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -80,4 +79,13 @@ class FocusGroupRepository @Inject() (dbConfigProvider: DatabaseConfigProvider) 
       group.map(_.news).avg, group.map(_.working).avg)}.result
   }
 
+  def vpnByTechnicalLevel(condition: String): Future[Seq[(String, Int)]] = db.run {
+    focusGroup.filter(_.used_VPN === condition)
+      .groupBy(p => p.technical_group).map{case (technical_group, group) => (technical_group, group.map(_.id).length)}.result
+  }
+
+  def smartDnsByTechnicalLevel(condition: String): Future[Seq[(String, Int)]] = db.run {
+    focusGroup.filter(_.used_smart_dns === condition)
+      .groupBy(p => p.technical_group).map{case (technical_group, group) => (technical_group, group.map(_.id).length)}.result
+  }
 }
