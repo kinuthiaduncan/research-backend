@@ -4,9 +4,8 @@ import javax.inject.{Inject, Singleton}
 import models.FocusGroupRepository
 import play.api.Configuration
 import play.api.libs.json.Json
-import play.api.mvc.{AbstractController, MessagesControllerComponents}
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.ExecutionContext
 
 @Singleton
 class DashboardController @Inject() (scc: SecuredControllerComponents) (repo: FocusGroupRepository)

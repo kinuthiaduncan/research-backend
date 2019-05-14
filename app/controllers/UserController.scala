@@ -41,6 +41,7 @@ val loginForm: Form[LoginForm] = Form {
               user.get.first_name,
               user.get.last_name,
               user.get.email_address,
+              user.get.user_level,
               user.get.password))
             val token = session.serialize
             val userDetails = session.get("user")
