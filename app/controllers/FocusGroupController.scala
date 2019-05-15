@@ -2,31 +2,35 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 import models.FocusGroupRepository
+import play.api.Configuration
 import play.api.libs.json.Json
-import play.api.mvc.{AbstractController, MessagesControllerComponents}
-
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class FocusGroupController @Inject() (cc: MessagesControllerComponents) (repo: FocusGroupRepository)
-                                     (implicit ec: ExecutionContext) extends AbstractController(cc) {
+class FocusGroupController @Inject() (scc: SecuredControllerComponents) (repo: FocusGroupRepository)
+                                     (implicit ec: ExecutionContext, conf:Configuration) extends SecuredController(scc) {
 
-  def index() = Action.async(implicit request => {
+  def index() = AuthenticatedAction.async(implicit request => {
     repo.list().map { focusGroups =>
       Ok(Json.toJson(focusGroups))
     }
   })
 
-  def genderAgeGroups() = Action.async(implicit request => {
+  def genderAgeGroups() = AuthenticatedAction.async(implicit request => {
     repo.genderAgeGroups().map{ data =>
       Ok(Json.obj("status" ->"OK", "data" -> data ))
     }
   })
 
-  def internetUsageByAgeGroup() = Action.async(implicit request => {
+  def internetUsageByAgeGroup() = AuthenticatedAction.async(implicit request => {
     repo.internetUsageByAgeGroup().map{ data =>
       Ok(Json.obj("status" ->"OK", "data" -> data ))
     }
   })
 
+  def vpnAge(condition: String) = AuthenticatedAction.async(implicit request => {
+    repo.vpnByAgeGroups(condition).map { data =>
+      Ok(Json.obj("status" ->"OK", "data" -> data ))
+    }
+  })
 }

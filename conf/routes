@@ -9,6 +9,7 @@ GET     /api/dashboard/all_participants  controllers.DashboardController.allPart
 GET     /api/dashboard/group_by_age     controllers.DashboardController.groupByAgeGroup
 GET     /api/focus_groups/gender_age_group  controllers.FocusGroupController.genderAgeGroups
 GET     /api/focus_groups/use_age_group    controllers.FocusGroupController.internetUsageByAgeGroup
+GET     /api/focus_groups/vpn_age/:condition              controllers.FocusGroupController.vpnAge(condition: String)
 #admin routes
 + nocsrf
 POST    /api/admin/store_user              controllers.AdminController.storeUser
