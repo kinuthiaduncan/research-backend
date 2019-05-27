@@ -7,18 +7,24 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.12.8"
+scalaVersion := "2.11.12"
+libraryDependencies ++= Seq(
+  guice,
+  evolutions,
+  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.1" % Test,
+  "com.typesafe.play" %% "play-slick" % "4.0.0",
+  "com.typesafe.play" %% "play-slick-evolutions" % "4.0.0",
+  "mysql" % "mysql-connector-java" % "5.1.37",
+  "com.pauldijou" %% "jwt-play" % "2.1.0",
+  "com.github.t3hnar" %% "scala-bcrypt" % "4.0",
+  "org.apache.spark" %% "spark-core" % "2.4.3",
+  "org.apache.spark" %% "spark-sql" % "2.4.3",
+  "org.apache.hadoop" % "hadoop-client" % "3.1.0"
+)
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-core" % "2.8.7"
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.8.7"
+dependencyOverrides += "com.fasterxml.jackson.module" % "jackson-module-scala_2.11" % "2.8.7"
 
-libraryDependencies += guice
-libraryDependencies += evolutions
-
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.1" % Test
-
-libraryDependencies += "com.typesafe.play" %% "play-slick" % "4.0.0"
-libraryDependencies += "com.typesafe.play" %% "play-slick-evolutions" % "4.0.0"
-libraryDependencies +=  "mysql" % "mysql-connector-java" % "5.1.37"
-libraryDependencies +=  "com.pauldijou" %% "jwt-play" % "2.1.0"
-libraryDependencies +=  "com.github.t3hnar" %% "scala-bcrypt" % "4.0"
 //libraryDependencies += "org.postgresql" % "postgresql" % "42.2.1"
 
 // Adds additional packages into Twirl

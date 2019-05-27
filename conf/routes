@@ -10,6 +10,7 @@ GET     /api/dashboard/group_by_age     controllers.DashboardController.groupByA
 GET     /api/focus_groups/gender_age_group  controllers.FocusGroupController.genderAgeGroups
 GET     /api/focus_groups/use_age_group    controllers.FocusGroupController.internetUsageByAgeGroup
 GET     /api/focus_groups/vpn_age/:condition              controllers.FocusGroupController.vpnAge(condition: String)
+GET     /api/spark/test              controllers.CensoredPlanetController.index
 #admin routes
 + nocsrf
 POST    /api/admin/store_user              controllers.AdminController.storeUser

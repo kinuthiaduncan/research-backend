@@ -30,6 +30,8 @@ class FocusGroupController @Inject() (scc: SecuredControllerComponents) (repo: F
 
   def vpnAge(condition: String) = AuthenticatedAction.async(implicit request => {
     repo.vpnByAgeGroups(condition).map { data =>
+      val testing = for(x <- data) yield {x._1}
+      println(testing)
       Ok(Json.obj("status" ->"OK", "data" -> data ))
     }
   })
