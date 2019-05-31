@@ -11,15 +11,4 @@ import scala.concurrent.ExecutionContext
 class DashboardController @Inject() (scc: SecuredControllerComponents) (repo: FocusGroupRepository)
                                     (implicit ec: ExecutionContext, conf:Configuration) extends SecuredController(scc) {
 
-  def allParticipants() = AuthenticatedAction.async(implicit request => {
-    repo.count().map { count =>
-      Ok(Json.obj("status" -> "OK", "participantCount" -> count))
-    }
-  })
-
-  def groupByAgeGroup() = AuthenticatedAction.async(implicit request => {
-    repo.ageGroups().map { ageGroups =>
-      Ok(Json.obj("status" -> "OK", "ageGroups" -> ageGroups))
-    }
-  })
 }

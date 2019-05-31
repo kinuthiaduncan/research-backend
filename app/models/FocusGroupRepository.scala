@@ -60,7 +60,11 @@ class FocusGroupRepository @Inject() (dbConfigProvider: DatabaseConfigProvider) 
   }
 
   def genderAgeGroups(): Future[Seq[((String, String), Int)]] = db.run {
-    focusGroup.groupBy(p => (p.gender, p.age_group)).map{case (gender, group) => (gender, group.map(_.id).length)}.result
+    focusGroup.groupBy(p => (p.age_group, p.gender)).map{case (gender, group) => (gender, group.map(_.id).length)}.result
+  }
+
+  def techLevelAgeGroups(): Future[Seq[((String, String), Int)]] = db.run {
+    focusGroup.groupBy(p => (p.age_group, p.technical_group)).map{case (technical_group, group) => (technical_group, group.map(_.id).length)}.result
   }
 
   def vpnByAgeGroups(condition: String): Future[Seq[(String, Int)]] = db.run {
