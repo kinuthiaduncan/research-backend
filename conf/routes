@@ -19,6 +19,8 @@ POST    /api/admin/store_user              controllers.AdminController.storeUser
 GET    /api/admin/users              controllers.AdminController.getAllUsers
 + nocsrf
 POST    /api/user/authenticate               controllers.UserController.login
++ nocsrf
+POST     /api/censorship/google_trends              controllers.CensorshipController.interestOverTime
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
