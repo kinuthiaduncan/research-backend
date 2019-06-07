@@ -1,16 +1,13 @@
 package controllers
 
-import java.net.{URI, URLEncoder}
-
-import akka.http.javadsl.model.HttpResponse
 import javax.inject.Inject
 import models.FocusGroupRepository
 import play.api.Configuration
 import play.api.libs.json.Json
-import scala.util.{Failure, Success}
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.io.BufferedSource
+import scala.util.Failure
 
 class CensorshipController @Inject() (scc: SecuredControllerComponents) (repo: FocusGroupRepository)
                                      (implicit ec: ExecutionContext, conf:Configuration) extends SecuredController(scc) {
