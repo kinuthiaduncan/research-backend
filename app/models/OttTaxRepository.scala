@@ -23,8 +23,8 @@ class OttTaxRepository @Inject() (dbConfigProvider: DatabaseConfigProvider) (imp
     def access_hotspots = column[String]("access_hotspots")
     def social_media_six_months = column[String]("social_media_six_months")
     def ott_effect_business = column[String]("ott_effect_business")
-    def ott_inconvenience = column[String]("ott_inconvenience")
-    def mobile_money_tax_inconvenience = column[String]("mobile_money_tax_inconvenience")
+    def ott_inconvenience = column[Option[String]]("ott_inconvenience")
+    def mobile_money_tax_inconvenience = column[Option[String]]("mobile_money_tax_inconvenience")
     def tax_effect_mobile_money_use = column[String]("tax_effect_mobile_money_use")
     def mobile_tax_effect_business = column[String]("mobile_tax_effect_business")
     def mobile_tax_opinion = column[String]("mobile_tax_opinion")
@@ -43,4 +43,37 @@ class OttTaxRepository @Inject() (dbConfigProvider: DatabaseConfigProvider) (imp
   def count(): Future[Int] = db.run {
     ottTax.length.result
   }
+
+  def socialMediaSix(): Future[Int] = db.run {
+    ottTax.filter(_.social_media_six_months === "Yes").length.result
+  }
+
+  def socialMediaSince(): Future[Int] = db.run {
+    ottTax.filter(_.social_media_since_ott === "Yes").length.result
+  }
+
+  def usedVpn(): Future[Int] = db.run {
+    ottTax.filter(_.access_vpn === "I use VPN").length.result
+  }
+
+  def usedHotspots(): Future[Int] = db.run {
+    ottTax.filter(_.access_hotspots === "I use WiFi / Hotspot(s)").length.result
+  }
+
+  def paidOtt(): Future[Int] = db.run {
+    ottTax.filter(_.access_ott === "I paid the OTT tax").length.result
+  }
+
+  def ottInconvenience(): Future[Seq[(Option[String], Int)]] = db.run {
+    ottTax.filter(_.ott_inconvenience.isDefined).groupBy(p => p.ott_inconvenience)
+      .map{case (inconvenience, group) => (inconvenience, group.map(_.id).length)}.sortBy(_._2)
+      .result
+  }
+
+  def mobileTaxInconvenience(): Future[Seq[(Option[String], Int)]] = db.run {
+    ottTax.filter(_.mobile_money_tax_inconvenience.isDefined).groupBy(p => p.mobile_money_tax_inconvenience)
+      .map{case (inconvenience, group) => (inconvenience, group.map(_.id).length)}.sortBy(_._2)
+      .result
+  }
+
 }

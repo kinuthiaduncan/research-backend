@@ -12,6 +12,10 @@ GET     /api/focus_groups/tech_age_group  controllers.FocusGroupController.techL
 GET     /api/focus_groups/use_age_group    controllers.FocusGroupController.internetUsageByAgeGroup
 GET     /api/focus_groups/vpn_age/:condition              controllers.FocusGroupController.vpnAge(condition: String)
 GET     /api/focus_groups/smart_dns_age/:condition              controllers.FocusGroupController.smartDNSAge(condition: String)
+GET     /api/ott_tax/social_use_effect              controllers.OttTaxController.socialMediaUseEffect
+GET     /api/ott_tax/mitigation              controllers.OttTaxController.mitigation
+GET     /api/ott_tax/inconvenience             controllers.OttTaxController.ottInconvenience
+GET     /api/mobile_tax/inconvenience             controllers.OttTaxController.mobileTaxInconvenience
 GET     /api/spark/test              controllers.CensoredPlanetController.index
 #admin routes
 + nocsrf

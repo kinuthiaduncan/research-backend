@@ -1,26 +1,20 @@
 package controllers
 
 import javax.inject.Inject
-import models.UserRepository
-import models.User
+import models.{User, UserRepository}
 import pdi.jwt.JwtSession
-import pdi.jwt.JwtSession._
 import play.api.Configuration
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.libs.json._
-import play.api.mvc._
 import play.api.mvc.MessagesControllerComponents
 
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.{Failure, Success}
 
 class UserController @Inject() (scc: SecuredControllerComponents)  (cc: MessagesControllerComponents)
                                (userRepo: UserRepository)
                               (implicit ec: ExecutionContext, conf:Configuration) extends SecuredController(scc) {
 
-//  private val loginForm: Reads[(String, String)] =
-//    ((JsPath \ "email_address").read[String] and (JsPath \ "password").read[String]).tupled
 val loginForm: Form[LoginForm] = Form {
   mapping(
     "email_address" -> nonEmptyText,

@@ -79,7 +79,6 @@ class FocusGroupController @Inject() (scc: SecuredControllerComponents) (repo: F
     val data = mutable.Map[String,mutable.Map[String, Int]]()
     val tempHolder = mutable.Map[String, Int]()
     repo.smartDnsByAgeGroups(condition).map{ smartDNSUse =>
-      print(smartDNSUse)
       smartDNSUse.foreach(item => {
         tempHolder(item._1) = item._2
         data(condition) = tempHolder
