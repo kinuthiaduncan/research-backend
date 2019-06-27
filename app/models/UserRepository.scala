@@ -1,5 +1,9 @@
 package models
 
+/**
+  * Created by Duncan on Jun, 2019
+  */
+
 import javax.inject.Inject
 import play.api.db.slick.DatabaseConfigProvider
 import play.api.libs.json.Json

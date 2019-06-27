@@ -1,5 +1,9 @@
 package controllers
 
+/**
+  * Created by Duncan on Jun, 2019
+  */
+
 import javax.inject.{Inject, Singleton}
 import models.FocusGroupRepository
 import play.api.Configuration
@@ -85,5 +89,31 @@ class FocusGroupController @Inject() (scc: SecuredControllerComponents) (repo: F
       })
       Ok(Json.obj("status" ->"OK", "data" -> data ))
     }
+  })
+
+  def vpnUsageReason() = AuthenticatedAction.async(implicit request => {
+    val data = for {
+      remotely <- repo.vpnUseReason("remotely")
+      geo <- repo.vpnUseReason("regions")
+      identity <- repo.vpnUseReason("identity")
+      restricted <- repo.vpnUseReason("restricted at work")
+    } yield (remotely, geo, identity, restricted)
+    data.map(item => {
+      Ok(Json.obj("Working remotely" -> item._1, "Geoblocked content" -> item._2, "Hide identity" -> item._3,
+        "Restricted content" -> item._4))
+    })
+  })
+
+  def dnsUsageReason() = AuthenticatedAction.async(implicit request => {
+    val data = for {
+      remotely <- repo.dnsUseReason("remotely")
+      geo <- repo.dnsUseReason("in my region")
+      identity <- repo.dnsUseReason("identity")
+      restricted <- repo.dnsUseReason("restricted at work")
+    } yield (remotely, geo, identity, restricted)
+    data.map(item => {
+      Ok(Json.obj("Working remotely" -> item._1, "Geoblocked content" -> item._2, "Hide identity" -> item._3,
+        "Restricted content" -> item._4))
+    })
   })
 }

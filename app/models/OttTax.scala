@@ -1,5 +1,9 @@
 package models
 
+/**
+  * Created by Duncan on Jun, 2019
+  */
+
 import play.api.libs.json.Json
 
 case class OttTax (id: Long, gender: String, age_group: String, social_media_since_ott: String, access_ott: String,

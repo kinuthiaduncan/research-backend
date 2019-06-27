@@ -1,5 +1,9 @@
 package models
 
+/**
+  * Created by Duncan on Jun, 2019
+  */
+
 import play.api.libs.json.Json
 
 case class User (id: Long, first_name: String, last_name: String, email_address: String, user_level: String, password: String){

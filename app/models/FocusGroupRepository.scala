@@ -1,5 +1,9 @@
 package models
 
+/**
+  * Created by Duncan on Jun, 2019
+  */
+
 import javax.inject.{Inject, Singleton}
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
@@ -92,4 +96,13 @@ class FocusGroupRepository @Inject() (dbConfigProvider: DatabaseConfigProvider) 
     focusGroup.filter(_.used_smart_dns === condition)
       .groupBy(p => p.technical_group).map{case (technical_group, group) => (technical_group, group.map(_.id).length)}.result
   }
+
+  def vpnUseReason(condition: String): Future[Int] = db.run {
+    focusGroup.filter(p => p.vpn_use_reason like "%" ++condition ++ "%").length.result
+  }
+
+  def dnsUseReason(condition: String): Future[Int] = db.run {
+    focusGroup.filter(p => p.smart_dns_reason like "%" ++condition ++ "%").length.result
+  }
+
 }

@@ -1,5 +1,9 @@
 package models
 
+/**
+  * Created by Duncan on Jun, 2019
+  */
+
 import org.apache.spark.{SparkConf, SparkContext}
 
 import scala.concurrent.Future

@@ -1,5 +1,9 @@
 package controllers
 
+/**
+  * Created by Duncan on Jun, 2019
+  */
+
 import javax.inject.Inject
 import models.{User, UserRepository}
 import pdi.jwt.JwtSession
