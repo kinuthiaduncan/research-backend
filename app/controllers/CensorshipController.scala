@@ -5,15 +5,16 @@ package controllers
   */
 
 import javax.inject.Inject
-import models.FocusGroupRepository
+import models.ShutdownRepository
 import play.api.Configuration
 import play.api.libs.json.Json
 
+import scala.collection.mutable
 import scala.concurrent.{ExecutionContext, Future}
 import scala.io.BufferedSource
 import scala.util.Failure
 
-class CensorshipController @Inject() (scc: SecuredControllerComponents) (repo: FocusGroupRepository)
+class CensorshipController @Inject() (scc: SecuredControllerComponents) (shutdownRepo: ShutdownRepository)
                                      (implicit ec: ExecutionContext, conf:Configuration) extends SecuredController(scc) {
 
   def interestOverTime() = AuthenticatedAction.async(implicit request => {
@@ -37,4 +38,17 @@ class CensorshipController @Inject() (scc: SecuredControllerComponents) (repo: F
   })
 
   def get(url: String) = scala.io.Source.fromURL(url)
+
+  def shutdownByCountry() = AuthenticatedAction.async(implicit request => {
+    val dataHolder = mutable.Map[String, Int]()
+    val data = for {
+      shutdowns <- shutdownRepo.shutdownByCountry()
+    } yield shutdowns
+    data.map(item => {
+      item.foreach(p => {
+        dataHolder(p._1) = p._2
+      })
+      Ok(Json.obj("data" -> dataHolder))
+    })
+  })
 }

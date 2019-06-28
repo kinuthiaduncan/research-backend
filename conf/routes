@@ -18,6 +18,7 @@ GET     /api/ott_tax/social_use_effect              controllers.OttTaxController
 GET     /api/ott_tax/mitigation              controllers.OttTaxController.mitigation
 GET     /api/ott_tax/inconvenience             controllers.OttTaxController.ottInconvenience
 GET     /api/mobile_tax/inconvenience             controllers.OttTaxController.mobileTaxInconvenience
+GET     /api/censorship/shutdowns/all             controllers.CensorshipController.shutdownByCountry
 GET     /api/spark/test              controllers.CensoredPlanetController.index
 #admin routes
 + nocsrf
