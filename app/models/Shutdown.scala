@@ -5,9 +5,10 @@ package models
   */
 import play.api.libs.json.Json
 
-case class Shutdown (id: Long, start_date: String, end_date: String, target: String, source_url: String, country: String,
-                     country_code: String, region_affected: String, party_responsible: String, blackout_type: String, services_affected: String,
-                     platforms_affected: String, cause: String, notes: String)
+case class Shutdown (id: Long, start_date: Option[String], end_date: Option[String], target: Option[String],
+                     source_url: Option[String], country_code: String, country: String, region_affected: Option[String],
+                     party_responsible: Option[String], blackout_type: Option[String], services_affected: Option[String],
+                     platforms_affected: Option[String], cause: Option[String], notes: Option[String])
 
 object Shutdown{
   implicit val shutdownFormat = Json.format[Shutdown]

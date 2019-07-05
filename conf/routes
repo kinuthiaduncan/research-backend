@@ -19,6 +19,8 @@ GET     /api/ott_tax/mitigation              controllers.OttTaxController.mitiga
 GET     /api/ott_tax/inconvenience             controllers.OttTaxController.ottInconvenience
 GET     /api/mobile_tax/inconvenience             controllers.OttTaxController.mobileTaxInconvenience
 GET     /api/censorship/shutdowns/all             controllers.CensorshipController.shutdownByCountry
+GET     /api/censorship/shutdown/:country_code             controllers.CensorshipController.getCountryShutdowns(country_code: String)
+GET     /api/censorship/country/code/:country             controllers.CensorshipController.getCountryCode(country: String)
 GET     /api/spark/test              controllers.CensoredPlanetController.index
 #admin routes
 + nocsrf
