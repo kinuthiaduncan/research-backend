@@ -97,10 +97,11 @@ class FocusGroupController @Inject() (scc: SecuredControllerComponents) (repo: F
       geo <- repo.vpnUseReason("regions")
       identity <- repo.vpnUseReason("identity")
       restricted <- repo.vpnUseReason("restricted at work")
-    } yield (remotely, geo, identity, restricted)
+      ott <- repo.vpnUseReason("Evade OTT")
+    } yield (remotely, geo, identity, restricted, ott)
     data.map(item => {
       Ok(Json.obj("Working remotely" -> item._1, "Geoblocked content" -> item._2, "Hide identity" -> item._3,
-        "Restricted content" -> item._4))
+        "Restricted content" -> item._4, "Evade OTT" -> item._5))
     })
   })
 
