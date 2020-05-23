@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.1" % Test,
   "com.typesafe.play" %% "play-slick" % "4.0.0",
   "com.typesafe.play" %% "play-slick-evolutions" % "4.0.0",
-  "mysql" % "mysql-connector-java" % "5.1.37",
+  "mysql" % "mysql-connector-java" % "8.0.13",
   "com.pauldijou" %% "jwt-play" % "2.1.0",
   "com.github.t3hnar" %% "scala-bcrypt" % "4.0",
   "org.apache.spark" %% "spark-core" % "2.4.3",
